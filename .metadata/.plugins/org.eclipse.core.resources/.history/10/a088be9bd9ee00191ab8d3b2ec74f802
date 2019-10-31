@@ -1,0 +1,43 @@
+package Poligon;
+
+import java.util.Comparator; 
+import java.util.PriorityQueue; 
+  
+class The_Comparator implements Comparator<CyclistRecord> { 
+    public int compare(String str1, String str2) 
+    { 
+        String first_Str; 
+        String second_Str; 
+        first_Str = str1; 
+        second_Str = str2; 
+        return second_Str.compareTo(first_Str); 
+    }
+
+	@Override
+	public int compare(CyclistRecord o1, CyclistRecord o2) {
+		System.out.println("ll");
+		if(o1.time>o2.time)
+		{
+			return -1;
+		}
+		return 1;
+	} 
+} 
+  
+public class Queue { 
+    public static void main(String[] args) 
+    { 
+        PriorityQueue<CyclistRecord> queue = new 
+        PriorityQueue<CyclistRecord>(new The_Comparator()); 
+ 
+        queue.add(new CyclistRecord("Pawel", 200)); 
+        queue.add(new CyclistRecord("Lukasz", 400)); 
+        queue.add(new CyclistRecord("Wafel", 300)); 
+         System.out.println("Queue before using the comparator: " + queue); 
+  
+        System.out.println("The elements sorted in descending"
+                           + "order:"); 
+        for (CyclistRecord element : queue) 
+            System.out.print(element + " "); 
+    } 
+} 

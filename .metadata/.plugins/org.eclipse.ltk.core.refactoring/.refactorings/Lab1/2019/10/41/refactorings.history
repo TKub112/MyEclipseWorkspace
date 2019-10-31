@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;zad4.Displayer.checknumber(...)&apos; to &apos;checkDisplayNumber&apos;&#x0D;&#x0A;- Original project: &apos;Lab1&apos;&#x0D;&#x0A;- Original element: &apos;zad4.Displayer.checknumber(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;zad4.Displayer.checkDisplayNumber(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;checknumber&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;zad4{Displayer.java[Displayer~checknumber~QString;" name="checkDisplayNumber" references="true" stamp="1570914274661" version="1.0"/>
+</session>

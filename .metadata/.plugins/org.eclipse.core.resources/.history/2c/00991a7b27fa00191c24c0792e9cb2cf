@@ -1,0 +1,22 @@
+package zad1;
+
+public class Ksiazka implements Publikacja{
+	private String autor;
+	private String nazwa;
+	private int iloscStron;
+	
+	Ksiazka(String autor,String nazwa,int iloscStron)
+	{
+		this.autor = autor;
+		this.nazwa = nazwa;
+		this.iloscStron = iloscStron;
+		
+	}
+	@Override
+	public String opis()
+	{
+		
+		return autor + " " + autor + " " + iloscStron;
+		
+	}
+}

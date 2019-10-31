@@ -1,0 +1,312 @@
+package server;
+import java.io.DataInputStream;
+
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+import packet.Packet;
+import java.io.File;
+/**
+ * The class used to create a thread. Retrieves Requests from the queue and handles them based on their content.
+ * Can send a list of files belonging to a given user, send a list of users
+ * currently using the server, send the requested files, receive files and save them in the appropriate
+ * site, and share files with other users.
+ * @author Tobiasz Kubiak
+ *
+ */
+public class PacketMaker implements Runnable {
+
+    private BlockingQueue<Packet> taskQueue;
+    private ObjectOutputStream objectWriter;
+    private Packet r;
+    private boolean on = true;
+    private Label state;
+    
+    PacketMaker(BlockingQueue<Packet> taskQueue, Label state)
+    {
+	this.taskQueue = taskQueue;
+	this.state = state;
+    }
+    
+    @Override
+    public void run() {
+
+	while(on)
+	{
+		try 
+		{
+		    print("Ready");
+		    r = taskQueue.take();
+		    
+		    if(!on)
+		    {
+			break;
+		    }
+		    
+		    if(r.getAction().equals("sync"))
+		    {
+			syncRespond();
+		    }
+		    else if(r.getAction().equals("users"))
+		    {
+			usersRespond();
+		    }
+		    else if(r.getAction().equals("download"))
+		    {
+			downloadRespond();
+		    }
+		    else if(r.getAction().equals("upload"))
+		    {
+			uploadRespond();
+		    }
+		    else if(r.getAction().equals("share"))
+		    {
+			shareRespond();
+		    }
+		    else if(r.getAction().equals("delete"))
+		    {
+			deleteRespond();
+		    }
+		    else if(r.getAction().equals("reset"))
+		    {
+			resetRespond();
+		    }
+		    
+		    
+		} 
+		catch (InterruptedException e) 
+		{
+		    e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+		    e.printStackTrace();
+		}
+		catch (Exception e)
+		{
+		    e.printStackTrace();
+		}
+		
+	}
+	
+    }
+    
+    private void resetRespond() throws IOException, InterruptedException
+    {
+
+	print("Resetuje serwer do ustawien domyslnych");
+	Thread.sleep(3000);
+	for(int i=1;i<6;i++) {
+		try {
+			try(Stream<Path> list = Files.list(Paths.get("files/"+Integer.toString(i)+"/"))) {
+	        	List<String> result;
+	        	result = list.filter(Files::isRegularFile).map(x -> x.toString()).collect(Collectors.toList());
+	        	//System.out.println(result);
+	        	for (String filename : result) {
+	        		if(!filename.equals("files\\"+ Integer.toString(i) + "\\book.csv"))
+	        		{
+	        			File file = new File(filename);
+	        			file.delete();
+	        			File file1 = new File("files/"+Integer.toString(i)+"/book.csv");
+	        			file1.createNewFile();
+	        			
+	        		}
+	        	    
+	        	}
+
+	        } 
+	 }
+		catch(IOException e)
+		 {
+			 System.out.print("Wystail problem podczas resetu serwera");
+		 }
+	 }
+	
+	
+	
+	r.getSocket().close();
+	Platform.exit();
+    }
+    
+    private void deleteRespond() throws IOException, InterruptedException
+    {
+
+	print("Usuwam " + r.getNeededFile() + " dla " + r.getUsername());
+	Thread.sleep(3000);
+	//delete from disk 
+	for(int i=1;i<6;i++)
+	{
+		File file = new File("files/"+Integer.toString(i)+"/"+r.getNeededFile());
+		file.delete();
+		
+	}
+	//delete from local path
+	
+	File file = new File(r.getDirectory()+"/"+r.getNeededFile());
+	file.delete();
+
+	ManagerCSV.DeleteCSV(r.getUsername(), r.getNeededFile());
+	
+	 //delete file
+	
+	r.getSocket().close();
+    }
+    
+
+    private void syncRespond() throws IOException, InterruptedException
+    {
+	
+	print("Wysy³am liste plikow dla " + r.getUsername());
+	Thread.sleep(3000);
+	
+	objectWriter = new ObjectOutputStream(r.getSocket().getOutputStream());
+	objectWriter.writeObject( ManagerCSV.readUserFiles(r.getUsername() ));
+	
+	objectWriter.close();
+	r.getSocket().close();
+    }
+
+    private void usersRespond() throws IOException, InterruptedException
+    {
+	
+	print("Wysy³am liste u¿ytkowników.");
+	Thread.sleep(3000);
+	
+	objectWriter = new ObjectOutputStream(r.getSocket().getOutputStream());
+	objectWriter.writeObject( ManagerCSV.listUsers());
+	
+	objectWriter.close();
+	r.getSocket().close();
+    }
+    
+    private void downloadRespond() throws IOException, InterruptedException
+    {
+	
+	print("Wysy³am " + r.getNeededFile() + " do " + r.getUsername());
+	Thread.sleep(3000);
+	
+	String loc = "files/" + ManagerCSV.localiseFile(r.getUsername(), r.getNeededFile()) + "/" + r.getNeededFile();
+	DataOutputStream dos = new DataOutputStream(r.getSocket().getOutputStream());
+	FileInputStream fis = new FileInputStream(loc);
+	
+	byte[] bytes = new byte[8 * 1024];
+	
+	int count;
+        while ((count = fis.read(bytes)) > 0) 
+        {
+            dos.write(bytes, 0, count);
+        }
+	
+        dos.close();
+        fis.close();
+        r.getSocket().close();
+    }
+    
+    private void uploadRespond() throws IOException, InterruptedException
+    {
+	
+	print("Odbieram " + r.getNeededFile() + " od " + r.getUsername());
+	Thread.sleep(3000);
+	
+	//String disc = ManagerCSV.chooseDisc();
+	String loc1 = "files/" + "1" + "/" + r.getNeededFile();
+	String loc2 = "files/" + "2" + "/" + r.getNeededFile();
+	String loc3 = "files/" + "3" + "/" + r.getNeededFile();
+	String loc4 = "files/" + "4" + "/" + r.getNeededFile();
+	String loc5 = "files/" + "5" + "/" + r.getNeededFile();
+	DataInputStream dis = new DataInputStream(r.getSocket().getInputStream());
+	FileOutputStream fos1 = new FileOutputStream(loc1);
+	FileOutputStream fos2 = new FileOutputStream(loc2);
+	FileOutputStream fos3 = new FileOutputStream(loc3);
+	FileOutputStream fos4 = new FileOutputStream(loc4);
+	FileOutputStream fos5 = new FileOutputStream(loc5);
+	int count;
+	byte[] bytes = new byte[8 * 1024];
+	    
+	while ((count = dis.read(bytes)) > 0)
+	{
+		
+	    fos1.write(bytes, 0, count);
+	    fos2.write(bytes, 0, count);
+	    fos3.write(bytes, 0, count);
+	    fos4.write(bytes, 0, count);
+	    fos5.write(bytes, 0, count);
+	}
+	
+	ManagerCSV.addRecord(r.getUsername(),r.getNeededFile(),"1");
+	ManagerCSV.addRecord(r.getUsername(),r.getNeededFile(),"2");
+	ManagerCSV.addRecord(r.getUsername(),r.getNeededFile(),"3");
+	ManagerCSV.addRecord(r.getUsername(),r.getNeededFile(),"4");
+	ManagerCSV.addRecord(r.getUsername(),r.getNeededFile(),"5");
+	
+	fos1.close();
+	fos2.close();
+	fos3.close();
+	fos4.close();
+	fos5.close();
+	dis.close();
+	r.getSocket().close();
+	
+    }
+    
+    private void shareRespond() throws IOException, InterruptedException
+    {
+
+	print("Udostepniam " + r.getNeededFile() + " dla " + r.getFriend());
+	Thread.sleep(3000);
+	
+	if( !ManagerCSV.readUserFiles(r.getFriend()).contains(r.getNeededFile()) )
+	{
+	    ManagerCSV.addRecord(r.getFriend(), r.getNeededFile(),
+		    ManagerCSV.localiseFile(r.getUsername(), r.getNeededFile()));
+	}
+	
+	r.getSocket().close();
+    }
+    
+    /**
+     * The method is used to display the currently performed activity.
+     * @param n Tekst który zostanie wypisany na ekranie.
+     */
+    private void print(String n)
+    {
+	Platform.runLater(new Runnable()
+	{
+	    @Override
+	    public void run() {
+		state.setText(n);
+	    }
+	    
+	});
+    }
+    
+    /**
+     * Method used to safely terminate a thread.
+     */
+    public void shutdown()
+    {
+	on = false;
+	
+	try
+	{
+	    taskQueue.add(new Packet());
+	}
+	catch(Exception e)
+	{
+	    e.printStackTrace();
+	}
+    }
+    
+}

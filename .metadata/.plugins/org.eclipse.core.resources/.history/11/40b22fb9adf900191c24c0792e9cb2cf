@@ -1,0 +1,22 @@
+package lab05;
+
+import java.net.URL;
+import java.util.Set;
+
+public class LearnEnglish {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Set<String> words;
+		try {
+			words = URLReader.getDataFromURL("http://szgrabowski.kis.p.lodz.pl/zpo19/1500.txt");
+			
+			System.out.println(words);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+}
+
+}

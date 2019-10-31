@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.zip.ZipOutputStream"/>
+<fullyQualifiedTypeName name="java.util.zip.ZipEntry"/>
+<fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
+<fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
+<fullyQualifiedTypeName name="java.io.Writer"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="com.sun.prism.paint.Color"/>
+<fullyQualifiedTypeName name="javafx.scene.paint.Paint"/>
+<fullyQualifiedTypeName name="SwingComponents.PanelInterfrace"/>
+<fullyQualifiedTypeName name="javax.swing.JComponent"/>
+<fullyQualifiedTypeName name="java.security.SecureRandom"/>
+<fullyQualifiedTypeName name="DataManagement.PasswordGenerator"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="java.math.RoundingMode"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.lang.Double"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="application.JavaFXController"/>
+<fullyQualifiedTypeName name="javafx.scene.text.Font"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="lab05.URLReader"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="zad1.Decorator"/>
+<fullyQualifiedTypeName name="zad1.Publikacja"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+</qualifiedTypeNameHistroy>

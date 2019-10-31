@@ -1,0 +1,48 @@
+import java.text.CollationKey;
+import java.text.Collator;
+import java.util.Locale;
+
+public class zad1 {
+	public static void main(String[] args) {
+	/*
+		String[] names = {"ukasz", "Lucyna", "Marek", "Malgosia","Jarek"};
+        Collator collator = Collator.getInstance(new Locale("pl", "PL"));
+
+        String[] names2=names;
+        int i;
+        long start=System.nanoTime();
+        for(i=0;i<100000;i++){
+            sortStrings(collator,names2);
+            names2=names;
+        }
+        long stop=System.nanoTime();
+	*/
+	}
+
+	
+	
+	public static void sortStrings(Collator collator, String[] words) {
+
+		int i,j;
+		String key;
+		for (j = 1; j < words.length; j++) {
+	        key = words[j];
+	        i = j - 1;
+	        while (i >= 0) {
+	            if (collator.compare(words[j], key) > 0 && j>=0) {
+	                break;
+	            }
+	            words[i + 1] = words[i];
+	            i--;
+	        }
+	        words[i + 1] = key;
+	        
+	    }
+
+	}
+	
+	public static void fastSortStrings(Collator collator, String[] words) 
+
+	
+
+}

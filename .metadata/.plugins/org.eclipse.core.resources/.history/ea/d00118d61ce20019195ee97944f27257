@@ -1,0 +1,29 @@
+package Swingpacket;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.*;  
+public class Ruuner extends BackEnd{ 
+	
+static protected JFrame content=new JFrame();
+static protected JButton b=new JButton("click");
+JPanel content = new JPanel();
+public static void main(String[] args) {  
+	
+	new AddPasswordRecord();
+	new MenuBar();
+	JPanel content = new JPanel();//this is the panel that will be scrolled
+	//JScrollPane pane = new JScrollPane(content);
+	//f.getContentPane().add(pane);
+	content.setBounds(20,20,300,350);  //f.setBounds(x, y, width, height);
+	content.setForeground(Color.RED);
+	content.add(new JButton());
+	content.add(content);
+	content.setBounds(0,0,400,500);  //f.setBounds(x, y, width, height);
+	//f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	content.setLayout(null);//using no layout managers  
+	content.setVisible(true);//making the frame visible 
+}  
+}  
+

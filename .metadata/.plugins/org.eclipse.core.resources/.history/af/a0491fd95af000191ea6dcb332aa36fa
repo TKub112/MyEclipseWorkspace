@@ -1,0 +1,18 @@
+package application;
+import java.util.PriorityQueue;
+import java.util.Set;
+import Poligon.*;
+public class DataAppClass {
+	public static Set names;
+	public static PriorityQueue<CyclistRecord> queue ;
+	
+	public static void main(String[] args) throws Exception {
+		
+		Set names = URLReader.getNamesFromURL();
+		Queue queue = new Queue();
+		AddCyclistTimer timer = new AddCyclistTimer();
+		
+		
+	}
+
+}

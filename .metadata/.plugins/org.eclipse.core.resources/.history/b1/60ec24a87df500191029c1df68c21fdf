@@ -1,0 +1,20 @@
+package application;
+import java.util.PriorityQueue;
+import java.util.Set;
+import Poligon.*;
+public class DataAppClass {
+	public  Set<String> names;
+	public static  PriorityQueue<CyclistRecord> queue ;
+	
+	public DataAppClass(JavaFXStarter windo) throws Exception {
+		Set names = URLReader.getNamesFromURL();
+		Queue queueObject = new Queue();
+		queue = queueObject.queue;
+		System.out.println("main");
+		AddCyclistTimer timer = new AddCyclistTimer(names);
+	
+		
+		
+	}
+
+}

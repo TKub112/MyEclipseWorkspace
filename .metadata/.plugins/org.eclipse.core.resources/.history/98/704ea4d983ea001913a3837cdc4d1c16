@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Pesel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String input ;//= sc.nextLine();
+		input = "97090607312";
+		
+		int sexStr = Integer.parseInt(input.substring(9,10));
+		
+		if(sexStr%2==0){
+			System.out.println("Female");
+		}
+		else {
+			
+		}
+		
+		String birth = input.substring(0,6);
+		System.out.println(birth);
+		
+		int[] values = {9,7,3,1};
+		int valuePosition = 0;
+		int sum=0;
+		
+		int magicNumber = 0;
+		for(magicNumber = 0; magicNumber<10;magicNumber++)
+		{
+			sum=sum+Integer.parseInt(input.substring(magicNumber,magicNumber+1))*values[i];
+			valuePosition++;
+			if(valuePosition==4)
+				valuePosition=0;
+		}
+		if(sum == Integer.parseInt(input.substring(magicNumber,magicNumber+1)))
+		{
+			
+		}
+		
+	}
+	
+	//private peselData peselAnalyzer(){}
+}

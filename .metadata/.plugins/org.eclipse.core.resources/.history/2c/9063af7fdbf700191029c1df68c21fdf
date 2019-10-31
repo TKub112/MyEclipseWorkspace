@@ -1,0 +1,139 @@
+package zad2;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
+import com.google.gson.Gson;
+public class zad2 {
+	JavaFXStarter javafx;
+	
+	public zad2(JavaFXStarter javafx) {
+		this.javafx = javafx;
+		Gson gson = new Gson();
+		JsonFile answer ;
+        try (Reader reader = new FileReader("C:\\Users\\Tobiasz\\eclipse-workspace\\Lab04\\src\\jsonfile.json")) {
+            JsonFile json1 = gson.fromJson(reader, JsonFile.class);
+			
+            //generowanie pytan
+            Set<String[]> questions = generateRandom(json1);
+            
+            
+            
+            // Displaying the values after iterating through the iterator 
+            
+            Iterator value = questions.iterator(); 
+            String[] questionNames = new String[5];
+            int next = 0 ;  
+            while (value.hasNext()) { 
+                
+                String[] s = (String[]) value.next();
+                for(int length = 0 ; length < s.length; length++)
+                {
+                	
+                	if(length==0)
+                		questionNames[next] = s[0];
+                	
+                }
+                System.out.println(next);
+                next++;
+            } 
+          
+            //ustawienie tego w java fx wyswietlenie  
+            javafx.fooController.setQuestions(questionNames);
+            
+            
+         
+            long start=System.nanoTime();
+            
+
+				long stop=System.nanoTime();
+		        
+		        
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+		 	
+ }
+	
+
+
+	  Set<String[]> generateRandom(JsonFile JsonFile)
+	{
+		Random rng = new Random(); // Ideally just create one instance globally
+		int numbersNeeded = 5;
+		Set<String[]> generated = new LinkedHashSet<String[]>();
+		Set<String> names = new LinkedHashSet<String>();
+		while (generated.size() < numbersNeeded)
+		{
+			
+		    int next = rng.nextInt(5) + 1;
+		    
+		    
+		    //zabeizpiecznie na brak powtorzen
+		    if(!names.add(JsonFile.pytania[next][0]))
+		    {
+		     continue;
+		    }
+		    
+		    int length = 0;
+		    for(length = 0 ; length < JsonFile.pytania[next].length ; length++);
+		    
+		    String[] s = new String[length];
+		    for(length = 0 ; length < JsonFile.pytania[next].length ; length++)
+		    {
+		    	s[length] = JsonFile.pytania[next][length];
+		    }
+		    
+		    generated.add(s);
+		}
+		return generated;
+	}
+
+	
+	static class  JsonFile {
+
+	private String[][] pytania;
+
+	JsonFile()
+	{
+		super();
+	}
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+
+    	return pytania[0][0];
+    }
+    //getters and setters
+}
+	protected static void createJsonFile() {
+		
+	
+	}
+	
+	
+	 protected static JsonFile createStaffObject(Map<String, String> answers) {
+
+		JsonFile json = new JsonFile();
+		int i = 0;
+		for (Map.Entry<String,String> entry : answers.entrySet())  {
+			json.pytania[i][0] = entry.getKey();
+			json.pytania[i][1] = entry.getValue();
+            i++;
+		}
+		
+
+        return json;
+
+	    }
+
+}
+
+

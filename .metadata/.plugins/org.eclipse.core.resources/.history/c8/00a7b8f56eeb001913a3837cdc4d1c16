@@ -1,0 +1,39 @@
+import java.util.Date;
+
+public class peselData {
+	private String sex;
+	private Date birthDate;
+	private String pesel;
+	
+	peselData(String pesel){
+
+		int sexStr = Integer.parseInt(pesel.substring(9,10));
+		
+		if(sexStr%2==0){
+			setSex("Female");
+		}
+		else {
+			setSex("Male");
+		}
+		
+	}
+	peselData(String sex,Date birthDate)
+	{
+		this.sex=sex;
+		this.birthDate=birthDate;
+	}
+	protected void setSex(String sex)
+	{
+		this.sex=sex;
+	}
+	protected void setSex(Date birthDate)
+	{
+		this.birthDate=birthDate;
+	}
+	protected void printInfo()
+	{
+		System.out.println(sex+ " " + birthDate);
+	}
+	
+
+}

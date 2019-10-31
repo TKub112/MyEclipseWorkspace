@@ -1,0 +1,15 @@
+package zad1;
+
+public class KsiazkaZOkladkaTwarda extends Decorator{
+	String okladka = "okladka twarda";
+	
+	KsiazkaZOkladkaTwarda(Ksiazka ksiazka) {
+        super();
+    }
+     
+    public String decorate() {
+        return super.opis() + okladka;
+    }
+     
+
+}

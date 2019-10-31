@@ -1,0 +1,46 @@
+import java.text.CollationKey;
+import java.text.Collator;
+
+public class zad1 {
+	public static void main(String[] args) {
+	
+	Collator comapr = new Collator() {
+			
+			
+			@Override
+			public CollationKey getCollationKey(String source) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			Arrays.sort();
+			@Override
+			public int compare(String source, String target) {
+				for(int i = 0; i < al.size(); ++i) {
+				      String str = al.get(i);
+				      if(name.compareTo(str) <= 0) {
+				         al.add(i, name);
+				         return;   // done
+				      }
+				   }
+				   // not found a greater one in the arrayList
+				
+				   al.add(name);  // so append to the end
+			return null;
+				
+			}
+
+			@Override
+			public int hashCode() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+	}
+	
+	public static void sortStrings(Collator collator, String[] words) 
+	{
+		
+	}
+	
+
+}

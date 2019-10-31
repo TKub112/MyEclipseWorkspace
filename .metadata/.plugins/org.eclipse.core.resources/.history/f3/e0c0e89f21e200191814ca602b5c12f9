@@ -1,0 +1,56 @@
+package Swingpacket;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.*;  
+public class Ruuner extends BackEnd{ 
+	
+static protected JFrame f=new JFrame();
+static protected JButton b=new JButton("click");
+static protected JPanel content = new JPanel();
+public static void main(String[] args) {  
+	
+	new AddPasswordRecord();
+	new MenuBar();
+	
+	//JScrollPane pane = new JScrollPane(content);
+	//f.getContentPane().add(pane);
+	content.setBounds(20,20,300,350);  //f.setBounds(x, y, width, height);
+	content.setForeground(Color.RED);
+	content.setBackground(Color.WHITE);
+	//content.add(new JButton());
+	f.add(content);
+	f.setBounds(0,0,400,500);  //f.setBounds(x, y, width, height);
+	//f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	f.setLayout(new FlowLayout(FlowLayout.RIGHT));  
+	f.setVisible(true);//making the frame visible 
+	 JScrollPane scrollableTextArea = new JScrollPane(content); 
+	 scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+	  f.getContentPane().add(content);  
+	
+	/*Some piece of code*/
+	f.addWindowListener(new java.awt.event.WindowAdapter() {
+	    @Override
+	    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+	       /* if (JOptionPane.showConfirmDialog(f, 
+	            "Are you sure you want to close this window?", "Close Window?", 
+	            JOptionPane.YES_NO_OPTION,
+	            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+	        	*/
+	        	try {
+					this.finalize();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            System.exit(0);
+	        }
+	    
+	});
+}  
+}  
+

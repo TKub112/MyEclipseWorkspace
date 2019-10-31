@@ -1,0 +1,42 @@
+package zad1;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.text.Collator;
+import java.util.Locale;
+
+import org.junit.jupiter.api.Test;
+
+class tests {
+
+	@Test
+	void test() {
+		String[] imiona = {"Lukasz", "Lucyna", "Marek", "Malgosia","Jarek","Jan","Maryla","Kasia"};
+        Collator collator = Collator.getInstance(new Locale("pl", "PL"));
+        String[] imiona2=imiona;
+        long start=System.nanoTime();
+        for(int i=0;i<100000;i++){
+            zad1.sortStrings(collator,imiona2);
+            //imiona2=imiona;
+        }
+        long stop=System.nanoTime();
+        System.out.println("Sort string Time: " + (long)(stop-start));
+        
+        start=System.nanoTime();
+        for(int i=0;i<100000;i++){
+        	 zad1.fastSortStrings(collator,imiona2);
+            //imiona2=imiona;
+        }
+        stop=System.nanoTime();
+        System.out.println("Fastsort string Time: " + (long)(stop-start));
+        
+        start=System.nanoTime();
+        for(int i=0;i<100000;i++){
+        	 zad1.fastSortStrings2(collator,imiona2);
+            //imiona2=imiona;
+        }
+        stop=System.nanoTime();
+        System.out.println("Fastsort2 string Time: " +(long)(stop-start));
+	}
+
+}

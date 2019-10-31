@@ -1,0 +1,21 @@
+package Poligon;
+import java.net.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.io.*;
+
+public class URLReader {
+    public static Set URL() throws Exception {
+
+        URL oracle = new URL("http://szgrabowski.kis.p.lodz.pl/zpo19/nazwiska.txt");
+        BufferedReader in = new BufferedReader(
+        new InputStreamReader(oracle.openStream()));
+        Set names = new HashSet<String>();
+        String inputLine;
+        while ((inputLine = in.readLine()) != null)
+            names.add(inputLine);
+        in.close();
+        return names;
+    }
+    
+}

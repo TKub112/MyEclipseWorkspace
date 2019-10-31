@@ -1,0 +1,57 @@
+package application;
+
+import java.util.Iterator;
+import java.util.Queue;
+import java.util.Random;
+import java.util.Set;
+import java.util.TimerTask;
+
+import Poligon.CyclistRecord;
+import application.*;
+import sun.misc.GC;
+class addCyclist extends TimerTask 
+{ 
+	Iterator<String> iterator;
+	String name;
+	Set<String> set;
+	
+    public void run() 
+    { 
+       //get element from set
+    	
+    	if(iterator.hasNext())
+    		name = iterator.next();
+		else {
+			try {
+				System.out.println(DataAppClass.queue);
+				this.finalize();
+				
+				System.exit(0);
+			} catch (Throwable e) {
+				System.out.println("problem with finalize object");
+				e.printStackTrace();
+			}
+		}
+    	set.remove(set.contains(name));
+    	
+    	//add new cyclist to queue
+    	CyclistRecord record = new CyclistRecord(name,randomtime());
+    	DataAppClass.queue.add(record);
+    	
+    } 
+    addCyclist(Set<String> set)
+    {
+    	this.set = set;
+    	iterator = set.iterator();
+    	
+    }
+    
+    int randomtime()
+    {
+    	Random random = new Random();
+    	int randomInteger = random.nextInt(80)+290;
+    	return randomInteger;
+    }
+    
+      
+} 

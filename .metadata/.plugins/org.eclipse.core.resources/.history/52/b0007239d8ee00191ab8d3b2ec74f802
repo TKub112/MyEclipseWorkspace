@@ -1,0 +1,11 @@
+package Poligon;
+
+public class CyclistRecord {
+	public String name;
+	public double time;
+	
+	public CyclistRecord(String name, double time) {
+			this.name = name;
+			this.time = time;
+			}
+}

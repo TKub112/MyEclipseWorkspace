@@ -1,0 +1,65 @@
+import java.util.Date;
+
+public class peselData {
+	private String sex;
+	private Date birthDate;
+	private String pesel;
+	
+	peselData(String pesel){
+		peselValidation(pesel);
+		int sexStr = Integer.parseInt(pesel.substring(9,10));
+		
+		if(sexStr%2==0){
+			setSex("Female");
+		}
+		else {
+			setSex("Male");
+		}
+		
+	}
+	
+
+	protected void setSex(String sex)
+	{
+		this.sex=sex;
+	}
+	
+	protected void setSex(Date birthDate)
+	{
+		this.birthDate=birthDate;
+	}
+	
+	protected void printInfo()
+	{
+		System.out.println(sex+ " " + birthDate);
+	}
+	
+	
+	public static boolean peselValidation(String input){
+		int[] values = new int[] {9,7,3,1};
+		int valuePosition = 0;
+		int sum=0;
+		
+		int magicNumber = 0;
+		for(magicNumber = 0; magicNumber<=9;magicNumber++)
+		{
+			sum=sum+Integer.parseInt(input.substring(magicNumber,magicNumber+1))*values[valuePosition];
+			valuePosition++;
+			if(valuePosition==4)
+				valuePosition=0;
+		}
+		System.out.println(sum=sum%10);
+		System.out.println(Integer.parseInt(input.substring(magicNumber,magicNumber+1)));
+		if(sum == Integer.parseInt(input.substring(magicNumber,magicNumber+1)))
+		{
+			System.out.println(Integer.parseInt(input.substring(magicNumber,magicNumber+1)));
+			System.out.println("Right Pesel");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+
+}

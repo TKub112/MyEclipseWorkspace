@@ -1,0 +1,139 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import application.*;
+import datastructures.CyclistRecord;
+import sun.misc.GC;
+class addCyclist extends TimerTask 
+{ 
+	Iterator<String> iterator;
+	String name;
+	Set<String> set;
+	List<CyclistRecord> list = new ArrayList<CyclistRecord>();
+	JavaFXStarter window;
+	
+    public void run() 
+    { 
+       //get element from set
+    	//System.out.println("AddCyclistrun");
+    	
+    	
+    	if(iterator.hasNext())
+    		name = iterator.next();
+		else {
+			try {
+				System.out.println(DataAppClass.queue);
+				this.finalize();
+				
+				System.exit(0);
+			} catch (Throwable e) {
+				System.out.println("problem with finalize object");
+				e.printStackTrace();
+			}
+		}
+    	
+    	//set.remove(set.contains(name));//popraw
+    	
+    	
+    	
+    	//add new cyclist to queue
+    	
+    	
+    	add();
+    	
+    	
+    	
+    	
+    	//System.out.println(record.name + " "record.time);
+    	
+    } 
+    addCyclist(Set<String> set,JavaFXStarter window)
+    {
+    	this.set = set;
+    	iterator = set.iterator();
+    	this.window = window;
+    }
+    
+    int randomtime()
+    {
+    	Random random = new Random();
+    	int randomInteger = random.nextInt(80)+290;
+    	return randomInteger;
+    }
+    
+    
+    
+    void add()
+    {
+    	int randomTime = randomtime();
+    	Timer timer = new Timer();
+
+        TimerTask delayedThreadStartTask = new TimerTask() {
+            @Override
+            public void run() {
+
+                //captureCDRProcess();
+                //moved to TimerTask
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                    	//dodawanie rekordu
+                    	CyclistRecord record = new CyclistRecord(name,randomtime());
+                    	DataAppClass.queue.add(record);
+                    	
+                    	//przepakowywanie tablicy 
+                    	//wpakuj do tablicy
+                    	while (!DataAppClass.queue.isEmpty()) {
+                           list.add(DataAppClass.queue.poll());
+                        }
+                    	System.out.println(list);
+                    	//zaktualizuj tablice java fx
+                    	window.setNamesWindow(list);
+                    	int indexLabel = 0;
+    		    		for (int i = 0; i < list.size(); i++) {
+    		    			list.get(i);
+    		    			
+    		    			JavaFXStarter.labelString.get(indexLabel).setText(list.get(i).name.toString());
+    		    			JavaFXStarter.labelString.get(indexLabel+1).setText(Double.toString(list.get(i).time));
+    		    			
+    		    			indexLabel +=2;
+    		    			if(i == 3){
+    		    				break;
+    		    			}
+    		    		}
+                    	
+                    	
+                    	
+                    	///spowrotem wpakuj do wektora
+                    	
+                		for (int i = 0; i < list.size(); i++) {
+                			DataAppClass.queue.add(list.get(i));
+                			
+                		}
+                		
+                		list.clear();
+                		
+                		
+                    	
+                    	
+                    	
+                    	
+                    	
+                    }
+                }).start();
+            }
+        };
+        
+        timer.schedule(delayedThreadStartTask, randomTime * (1000/25000)); 
+    }
+    
+      
+} 

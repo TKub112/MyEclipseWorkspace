@@ -1,0 +1,19 @@
+package Swingpacket;
+
+import javax.swing.*;  
+public class Ruuner extends BackEnd{ 
+	
+static protected JFrame f=new JFrame();
+static protected JButton b=new JButton("click");
+
+public static void main(String[] args) {  
+	
+	new AddPasswordRecord();
+	new MenuBar();
+
+	f.setBounds(0,0,400,500);  //f.setBounds(x, y, width, height);
+	f.setLayout(null);//using no layout managers  
+	f.setVisible(true);//making the frame visible  
+}  
+}  
+

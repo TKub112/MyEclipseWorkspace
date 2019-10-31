@@ -1,0 +1,12 @@
+package Swingpacket;
+
+public class AddPasswordRecord extends Ruuner{
+
+	
+	b.addActionListener(new ActionListener(){  
+		public void actionPerformed(ActionEvent e){  
+		            tf.setText("Welcome to Javatpoint.");  
+		        }  
+		    });  
+
+}

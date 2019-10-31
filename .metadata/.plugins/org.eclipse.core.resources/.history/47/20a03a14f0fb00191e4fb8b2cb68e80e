@@ -1,0 +1,13 @@
+package zad1;
+
+public class KsiazkaZObwoluta extends {
+	String okladka = "okladka twarda";
+	
+	KsiazkaZObwoluta(Publikacja publikacja) {
+        super(publikacja);
+    }
+     @Override
+    public String toString() {
+        return super.toString() + '|' + okladka;
+    }
+}

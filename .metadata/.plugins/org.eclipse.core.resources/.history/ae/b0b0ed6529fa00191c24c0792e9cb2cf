@@ -1,0 +1,39 @@
+package zad1;
+
+public class Decorator implements Publikacja{
+
+	 	private Publikacja publikacja;
+	 	
+		public Decorator(Publikacja publikacja2) {
+			publikacja = publikacja2;
+		}
+		
+		public String toString() {
+		        return getAutor() + getName() + getPages() ;
+		}
+
+		@Override
+		public String getAutor() {
+			// TODO Auto-generated method stub
+			return publikacja.getAutor();
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return publikacja.getName();
+		}
+
+		@Override
+		public int getPages() {
+			// TODO Auto-generated method stub
+			return publikacja.getPages()();
+		}
+	 	
+		
+
+
+
+		
+
+}

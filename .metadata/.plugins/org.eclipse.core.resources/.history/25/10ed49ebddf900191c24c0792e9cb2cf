@@ -1,0 +1,13 @@
+package zad1;
+
+public class Decorator implements Publikacja{
+
+	 private Ksiazka ksiazka;
+     
+	    // standard constructors
+	 	@Override
+	    public String opis() {
+	        return ksiazka.opis();
+	    }
+
+}

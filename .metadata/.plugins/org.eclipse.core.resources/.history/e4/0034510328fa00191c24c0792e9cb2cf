@@ -1,0 +1,21 @@
+package zad1;
+
+public class Decorator implements Publikacja{
+
+	 private Publikacja publikacja;
+     
+		public Decorator(Publikacja publikacja2) {
+		publikacja2 = publikacja;
+	}
+
+
+	 	
+		public String toString() {
+	        return publikacja.opis();
+	    }
+
+
+
+		
+
+}

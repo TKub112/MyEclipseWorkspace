@@ -1,0 +1,38 @@
+package Swingpacket;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*; 
+
+final class AddPasswordRecord extends Ruuner {
+		static protected JButton b=new JButton("click");
+		AddPasswordRecord()
+		{
+			b.setBounds(130,200,100, 40);//x axis, y axis, width, height  
+			
+			f.add(b);//adding button in JFrame  
+			
+			f.setBounds(0,0,400,500);  //f.setBounds(x, y, width, height);
+			
+			b.addActionListener(new ActionListener(){  
+				public void actionPerformed(ActionEvent e){  
+					 	JTextField tf1=new JTextField();  
+				        tf1.setSize(150,20);
+				        f.add(tf1);
+				        System.out.println("hello");
+				        }  
+				    });  
+		}
+		
+	
+		
+		/*public void actionPerformed(ActionEvent e){  
+		    JTextField tf1=new JTextField();  
+	        tf1.setBounds(50,50,150,20);
+	        f.add(tf1);
+	        }  
+	*/
+	
+	
+
+}

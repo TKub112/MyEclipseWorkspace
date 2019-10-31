@@ -1,0 +1,13 @@
+import java.util.Date;
+
+public class peselData {
+private String sex;
+private Date birthDate;
+
+peselData(String sex,Date birthDate)
+{
+	this.sex=sex;
+	this.birthDate=birthDate;
+}
+
+}

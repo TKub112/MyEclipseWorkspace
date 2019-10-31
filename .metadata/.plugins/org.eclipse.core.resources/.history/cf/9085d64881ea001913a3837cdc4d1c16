@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Pesel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		input = "97090607312";
+		
+		int sexStr = Integer.parseInt(input.substring(10,11));
+		
+		if(sexStr%2==0)
+		{
+			System.out.println("Female");
+		}
+		
+		
+		
+	}
+	
+	//private peselData peselAnalyzer(){}
+}

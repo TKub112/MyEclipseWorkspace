@@ -1,0 +1,36 @@
+package Poligon;
+
+import java.util.Comparator; 
+import java.util.PriorityQueue; 
+  
+class The_Comparator implements Comparator<String> { 
+    public int compare(String str1, String str2) 
+    { 
+        String first_Str; 
+        String second_Str; 
+        first_Str = str1; 
+        second_Str = str2; 
+        return second_Str.compareTo(first_Str); 
+    } 
+} 
+  
+public class Queue { 
+    public static void main(String[] args) 
+    { 
+        PriorityQueue<String> queue = new 
+        PriorityQueue<String>(new The_Comparator()); 
+  
+        queue.add("G"); 
+        queue.add("E"); 
+        queue.add("E"); 
+        queue.add("K"); 
+        queue.add("S"); 
+        queue.add("4"); 
+        System.out.println("Queue before using the comparator: " + queue); 
+  
+        System.out.println("The elements sorted in descending"
+                           + "order:"); 
+        for (String element : queue) 
+            System.out.print(element + " "); 
+    } 
+} 

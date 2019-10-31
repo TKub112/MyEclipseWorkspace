@@ -1,0 +1,68 @@
+package lab05;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
+public class LearnEnglish {
+	static Random random = new Random(); 
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		int k = 3;
+		int n = 10;
+		ArrayList baseWords = new ArrayList();
+
+		ArrayList learnedWords = new ArrayList();
+		baseWords = URLReader.getDataFromURL("http://szgrabowski.kis.p.lodz.pl/zpo19/1500.txt");
+		
+		shouldForgotRandom();
+		String[] s = new String[2];
+		
+		for(int i = 0 ; i < n ; i++)
+		{
+			//losowanie 2//print
+			//s[0] = baseWords.
+			//add to learned and remove from base
+			int random1 = random.nextInt(baseWords.size());
+			learnedWords.add((String) baseWords.get(random1));
+			baseWords.remove(random1);
+			//add to learned and remove from base
+			random1 = random.nextInt(baseWords.size());
+			learnedWords.add((String) baseWords.get(random1));
+			baseWords.remove(random1);
+			
+			//zapominanie max 2 print
+			
+			for(int d = 0 ,forgotten=0; d < learnedWords.size() ; d++){
+				if(shouldForgotRandom()){
+					baseWords.add((String) baseWords.get(d));
+					learnedWords.remove(d);
+					forgotten++;
+					
+				}
+			}
+			//print slownika
+			//System.out.println(learnedWords);
+		}
+		  
+		
+		
+		
+		System.out.println(learnedWords);
+		System.out.println(learnedWords.size());
+}
+
+	private static boolean shouldForgotRandom() {
+		
+		int choice = random.nextInt(2);
+		if(choice==0)
+		 return true;
+		else
+		 return false;
+		
+	}
+
+	
+}

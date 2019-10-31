@@ -1,0 +1,34 @@
+package zad1;
+
+public class Ksiazka implements Publikacja{
+	private String autor;
+	private String name;
+	private int pages;
+	
+	Ksiazka(String autor,String name,int pages)
+	{
+		this.autor = autor;
+		this.name = name;
+		this.pages = pages;
+		
+	}
+	@Override
+	public String getAutor() {
+		return autor;
+	}
+	@Override
+	public String getName() {
+		return name;
+	}
+	@Override
+	public int getPages() {
+		return pages;
+	}
+	@Override
+	public String toString() {
+		
+		return autor + '|' + name + '|' + pages;
+	}
+
+	
+}

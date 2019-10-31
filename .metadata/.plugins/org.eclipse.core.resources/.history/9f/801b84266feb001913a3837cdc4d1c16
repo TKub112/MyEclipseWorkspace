@@ -1,0 +1,69 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Pesel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String input ;//= sc.nextLine();
+		input = "97090607312";
+		
+		
+		
+		String birth = input.substring(0,6);
+		System.out.println(birth);
+		
+		if(peselValidation(input))
+		{
+			
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+		String dateInString = "31/08/2002";
+		Date date = null;
+		try {
+			date = sdf.parse(dateInString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date); //15/10/2013
+		
+		
+	}
+	
+
+	
+
+	
+	public static boolean peselValidation(String input){
+		int[] values = new int[] {9,7,3,1};
+		int valuePosition = 0;
+		int sum=0;
+		
+		int magicNumber = 0;
+		for(magicNumber = 0; magicNumber<=9;magicNumber++)
+		{
+			sum=sum+Integer.parseInt(input.substring(magicNumber,magicNumber+1))*values[valuePosition];
+			valuePosition++;
+			if(valuePosition==4)
+				valuePosition=0;
+		}
+		System.out.println(sum=sum%10);
+		System.out.println(Integer.parseInt(input.substring(magicNumber,magicNumber+1)));
+		if(sum == Integer.parseInt(input.substring(magicNumber,magicNumber+1)))
+		{
+			System.out.println(Integer.parseInt(input.substring(magicNumber,magicNumber+1)));
+			System.out.println("Right Pesel");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	
+}

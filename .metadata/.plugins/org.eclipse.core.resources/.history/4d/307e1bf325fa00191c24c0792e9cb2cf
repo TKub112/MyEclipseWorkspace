@@ -1,0 +1,5 @@
+package abstractFab;
+
+public interface AbstractFactory {
+
+}

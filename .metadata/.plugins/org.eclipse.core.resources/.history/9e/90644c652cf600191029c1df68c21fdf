@@ -1,0 +1,36 @@
+import java.text.CollationKey;
+import java.text.Collator;
+
+public class zad1 {
+	public static void main(String[] args) {
+	
+	Collator comapr = new Collator();
+	
+	}
+
+	
+	
+	public static void sortStrings(Collator collator, String[] words) {
+		int lineNumber = 5;
+		int i,j;
+		String key;
+		for (j = 1; j < lineNumber; j++) {
+	        key = words[j];
+	        i = j - 1;
+	        while (i >= 0) {
+	            if (collator.compare(words[j], key) > 0 && j>=0) {
+	                break;
+	            }
+	            words[i + 1] = words[i];
+	            i--;
+	        }
+	        words[i + 1] = key;
+	        
+	    }
+		
+		
+	}
+
+	
+
+}

@@ -1,0 +1,84 @@
+package zad2;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.LinkedHashSet;
+import java.util.Random;
+import java.util.Set;
+
+import com.google.gson.Gson;
+public class zad2 {
+
+	public static void main(String[] args) {
+		 Gson gson = new Gson();
+
+	        try (Reader reader = new FileReader("C:\\Users\\Tobiasz\\eclipse-workspace\\Lab04\\src\\jsonfile.json")) {
+
+	            // Convert JSON File to Java Object
+	            jsonFile json1 = gson.fromJson(reader, jsonFile.class);
+				
+	            //generowanie
+	            Set<String> questions = generateRandom(json1);
+
+	            //ustawienie tego w java fx wyswietlenie
+	            long start=System.nanoTime();
+	            
+	            //gra
+				long stop=System.nanoTime();
+	            
+				// print staff object
+	            
+				//tworzenie nowego jsona
+				
+				 jsonFile jsn2 = createStaffObject();
+
+			        // Java objects to String
+			        // String json = gson.toJson(staff);
+
+			        // Java objects to File
+			        try (FileWriter writer = new FileWriter("C:\\projects\\staff.json")) {
+			            gson.toJson(json2, writer);
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+
+	 }
+	
+
+
+	 static Set<String> generateRandom(jsonFile jsonFile)
+	{
+		Random rng = new Random(); // Ideally just create one instance globally
+		int numbersNeeded = 5;
+		Set<String> generated = new LinkedHashSet<String>();
+		while (generated.size() < numbersNeeded)
+		{
+		    int next = rng.nextInt(10) + 1;
+		    
+		    // As we're adding to a set, this will automatically do a containment check
+		    generated.add(jsonFile.pytania[next][0]);
+		}
+		return generated;
+	}
+
+	
+	class jsonFile {
+
+	private String[][] pytania;
+
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+
+    	return pytania[0][0];
+    }
+    //getters and setters
+}
+
+}
+
+
