@@ -6,6 +6,7 @@ public class Ksiazka implements Publikacja{
 	private int pages;
 	boolean obwoluta = false;
 	boolean okladka = false;
+	boolean autograf = false;
 	
 	Ksiazka(String autor,String name,int pages)
 	{
@@ -47,6 +48,15 @@ public class Ksiazka implements Publikacja{
 	public void setObwoluta() {
 		this.obwoluta = true;
 		
+	}
+	@Override
+	public void setAutograf() {
+		this.autograf = true ;
+	}
+	@Override
+	public boolean getAutograf() {
+		
+		return this.autograf;
 	}
 
 	

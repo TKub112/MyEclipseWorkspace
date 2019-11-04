@@ -8,5 +8,8 @@ public interface Publikacja {
 	void setObwoluta();
 	boolean getOkladka();
 	int getPages();
+	void setAutograf();
+	boolean getAutograf();
+	
 	
 }

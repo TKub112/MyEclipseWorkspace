@@ -53,6 +53,18 @@ public class Decorator implements Publikacja{
 			// TODO Auto-generated method stub
 			return publikacja.getOkladka();
 		}
+
+		@Override
+		public void setAutograf() {
+			publikacja.setAutograf();
+			
+		}
+
+		@Override
+		public boolean getAutograf() {
+			// TODO Auto-generated method stub
+			return publikacja.getAutograf();
+		}
 	 	
 		
 

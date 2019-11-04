@@ -11,9 +11,13 @@ public class KsiazkaZObwoluta extends Decorator{
     public String toString() {
 		if(publikacja.getOkladka()==false)
 		{
+			
 			System.out.println("ksiazka nie ma okladki aby zalozyc obwoute");
 		}
-		publikacja.setObwoluta();
+		else {
+			publikacja.setObwoluta();
         return super.toString() + '|' + obwoluta;
+		}
+		return null;
     }
 }
