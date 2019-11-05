@@ -1,15 +1,17 @@
 package zad1;
 
-public class Decorator implements Publikacja{
+public class Decorator implements Publikacja  {
 
-	 	private Publikacja publikacja;
+	 	public Publikacja publikacja;
 	 	
 		public Decorator(Publikacja publikacja2) {
 			publikacja = publikacja2;
 		}
 		
-		public String toString() {
-		        return getAutor() + getName() + getPages() ;
+		public String toString()  {
+			return getAutor() + getName() + getPages();
+			
+		     
 		}
 
 		@Override

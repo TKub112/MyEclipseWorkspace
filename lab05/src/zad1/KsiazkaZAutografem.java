@@ -10,12 +10,14 @@ public class KsiazkaZAutografem extends Decorator{
     }
 	@Override
     public String toString() {
-		if(publikacja.getAutograf()==false)
-		{
-			publikacja.setAutograf();
-			return super.toString() + '|' + autograf;
+		if(publikacja instanceof KsiazkaZAutografem){
+			System.out.println("ksiazka posiada autograf");
 		}
-		else {
+		if(publikacja.getAutograf()==false){
+			publikacja.setAutograf();
+			return publikacja.toString() + '|' + autograf;
+		}
+		if(publikacja.getAutograf()==true){
 			System.out.println("ksiazka posiada autograf");
 		}
 		return null;

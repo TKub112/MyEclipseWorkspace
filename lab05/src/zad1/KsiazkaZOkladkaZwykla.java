@@ -10,7 +10,7 @@ public class KsiazkaZOkladkaZwykla extends Decorator{
 	
      @Override
     public String toString() {
-        return super.toString() + '|' + okladka;
+        return publikacja.toString() + '|' + okladka;
     }
 }
      

@@ -10,4 +10,10 @@ public class Ksiazka {
 		this.pages = pages;
 	}
 	
+	Ksiazka createbook(String name, int pages)
+	{
+		return null;
+		
+	}
+	
 }

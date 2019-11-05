@@ -2,15 +2,16 @@ package zad1;
 
 public class KsiazkaZOkladkaTwarda extends Decorator{
 	String okladka = "okladka twarda";
-	Publikacja publikacja;
+	public Publikacja publikacja;
 	KsiazkaZOkladkaTwarda(Publikacja publikacja) {
         super(publikacja);
+        
         this.publikacja = publikacja;
         publikacja.setOkladka();
     }
      @Override
     public String toString() {
-        return super.toString() + '|' + okladka;
+        return publikacja.toString() + '|' + okladka;
     }
      
 

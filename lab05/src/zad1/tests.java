@@ -16,8 +16,8 @@ class tests {
 		System.out.println(kk1);
 		Publikacja kk2 = new KsiazkaZOkladkaTwarda(k2);
 		System.out.println(kk2);
-		//Publikacja fakeBook = new KsiazkaZObwoluta(k1);
-		//System.out.println(fakeBook);
+		Publikacja fakeBook = new KsiazkaZObwoluta(k1);
+		System.out.println(fakeBook);
 		// wyj¹tek! Nie mo¿na ob³o¿yæ obwolut¹ ksi¹¿ki, która nie posiada ok³adki
 		Publikacja kkk2 = new KsiazkaZObwoluta(kk2); // a tu OK
 		System.out.println(kkk2);
@@ -28,9 +28,7 @@ class tests {
 		System.out.println(dziadyZAutografemWieszcza);
 		// wypisuje: | Adam Mickiewicz | Dziady | 130 | Ok³adka twarda | Drogiej Hani - Adam
 		//Mickiewicz | 
-		//Publikacja dziadyZDwomaAutografami = new KsiazkaZAutografem(
-		// dziadyZAutografemWieszcza, "Haniu, to nieprawda, Dziady napisa³em ja,
-		//Julek S³owacki!");
+		Publikacja dziadyZDwomaAutografami = new KsiazkaZAutografem(dziadyZAutografemWieszcza, "Haniu, to nieprawda, Dziady napisa³em ja,");
 		 // wyj¹tek! Autograf mo¿e byæ tylko jeden 
 	}
 

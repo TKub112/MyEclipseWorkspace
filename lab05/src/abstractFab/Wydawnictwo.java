@@ -1,9 +1,6 @@
 package abstractFab;
 
-public class Wydawnictwo {
+public abstract class Wydawnictwo {
 	String autor;
-	Wydawnictwo(String autor)
-	{
-		this.autor = autor;
-	}
+	abstract Interface getInstance(String shapeType) ;
 }

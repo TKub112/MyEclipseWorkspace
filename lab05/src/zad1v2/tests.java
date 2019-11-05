@@ -1,0 +1,39 @@
+package zad1v2;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class tests {
+
+	@Test
+	void test() {
+		Publikacja k1 = new Ksiazka("Adam Mickiewicz", "Pan Tadeusz", 340);
+		System.out.println(k1);
+		Publikacja k2 = new Ksiazka("Adam Mickiewicz", "Dziady", 130);
+		System.out.println(k1);
+		Publikacja kk1 = new KsiazkaZOkladkaZwykla(k1);
+		System.out.println(kk1);
+		Publikacja kk2 = new KsiazkaZOkladkaTwarda(k2);
+		System.out.println(kk2);
+		Publikacja fakeBook = new KsiazkaZObwoluta(k1);
+		System.out.println(fakeBook);
+		// wyj¹tek! Nie mo¿na ob³o¿yæ obwolut¹ ksi¹¿ki, która nie posiada ok³adki
+		Publikacja kkk2 = new KsiazkaZObwoluta(kk2); // a tu OK
+		System.out.println(kkk2);
+		Publikacja kkk3 = new KsiazkaZObwoluta(kk1); // a tu OK
+		System.out.println(kkk3);
+		// Publikacja odrzut = new KsiazkaZObwoluta(kkk2);
+		// wyj¹tek! Obwoluta mo¿e byæ jedna
+		//Publikacja dziadyZAutografemWieszcza =
+		// new KsiazkaZAutografem(kk2, "Drogiej Hani - Adam Mickiewicz");
+		//System.out.println(dziadyZAutografemWieszcza);
+		// wypisuje: | Adam Mickiewicz | Dziady | 130 | Ok³adka twarda | Drogiej Hani - Adam
+		//Mickiewicz | 
+		//Publikacja dziadyZDwomaAutografami = new KsiazkaZAutografem(
+		// dziadyZAutografemWieszcza, "Haniu, to nieprawda, Dziady napisa³em ja,
+		//Julek S³owacki!");
+		 // wyj¹tek! Autograf mo¿e byæ tylko jeden 
+	}
+
+}

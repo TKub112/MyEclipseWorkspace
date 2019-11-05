@@ -1,17 +1,13 @@
 package abstractFab;
 
-public class PowiescHistoryczna {
 
-}
-public class PowiescHistoryczna implements Animal {
+public class PowiescHistoryczna extends Wydawnictwo {
 	 
-    @Override
-    public String getAnimal() {
-        return "Duck";
-    }
- 
-    @Override
-    public String makeSound() {
-        return "Squeks";
-    }
+    PowiescHistoryczna(String autor) {
+    	if(shapeType.equalsIgnoreCase("RECTANGLE")){
+            return new RoundedRectangle();         
+         }else if(shapeType.equalsIgnoreCase("SQUARE")){
+            return new RoundedSquare();
+         }	 
+	}
 }
